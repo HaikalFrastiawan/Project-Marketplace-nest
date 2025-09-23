@@ -7,8 +7,12 @@ import { User } from './user.entity';
 export class UsersService {
     constructor(@InjectRepository(User) private usersRepository: Repository<User>){}
 
-    find(){
-        return  this.usersRepository.find();
+    find(email: string){
+        return  this.usersRepository.find({
+            where:{
+                email,
+            }
+        });
     }
 
 
