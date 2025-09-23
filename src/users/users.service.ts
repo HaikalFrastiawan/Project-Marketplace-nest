@@ -15,11 +15,25 @@ export class UsersService {
     create( name: string, email: string, password: string){
         const user = this.usersRepository.create({name,email,password})
         return this.usersRepository.save(user);  
-    };
+    }
 
 
     findOneBy(id: number){
         return this.usersRepository.findBy({id});
     }
 
+    async update(id: number, attrs: Partial<User>){
+        const user = await this.findOneBy(id);
+        
+        if(!user){
+            throw new Error('User not found');
+        }
+
+        Object.assign(user,attrs);
+        return this.usersRepository.save(user);
+    }
+
+
+    remove(){};
 }
+
