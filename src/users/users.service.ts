@@ -34,7 +34,9 @@ export class UsersService {
         }
 
         Object.assign(user,attrs);
-        return this.usersRepository.save(user);
+    await this.usersRepository.update(id, attrs);
+    return this.findOneBy(id);
+
     }
 
 
