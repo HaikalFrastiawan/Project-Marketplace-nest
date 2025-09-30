@@ -4,7 +4,11 @@ import { Observable } from "rxjs";
 import { map } from "rxjs";
 
 
-export function Serialize(dto: any){
+interface clasSConstructor{
+    new(...args: any[]): object;
+}
+
+export function Serialize(dto: clasSConstructor){
     return UseInterceptors(new SerializeInterceptor(dto));
 }
 
